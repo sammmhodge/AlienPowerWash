@@ -1,28 +1,49 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GunBehaviour : MonoBehaviour
 {
     public bool Clicked, rightClicked, leftCloser;
-    public GameObject jet, testBall, jet2, platform;
+    public GameObject jet, testBall, jet2, platform, monster;
     private Color[] _colours;
     private Vector2 lastTouchPos;
     private bool touchedLastFrame;
-    public float turnSpeed, raiseSpeed, totalSoap, currentSoap, reloadAmount; 
- 
+    public float turnSpeed, raiseSpeed, totalSoap, currentSoap, reloadAmount;
+    float totalPixels = (1024 * 1024), maxPixels, currentProgress;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        Texture2D _tex = monster.GetComponent<Renderer>().material.mainTexture as Texture2D;
+        //for(int x = 0; x < _tex.width; x++)
+        //{
+        //    for(int y = 0; y < _tex.height; y++)
+        //    {
+
+        //    }
+        //}
+
+        Color[] _colours = _tex.GetPixels(0, 0, 1024, 1024);
+        for (int i = 0; i < _colours.Length; i++)
+        {
+            if (_colours[i].a == 0)
+            {
+                totalPixels--;
+            }
+        }
         jet.SetActive(false);
         jet2.SetActive(false);
+        //Debug.Log(totalPixels);
+        maxPixels = totalPixels;
     }
 
     // Update is called once per frame
     void Update()
     {
+        
         //variable declaration
         Vector3 mousePos = Input.mousePosition;
         Ray castPoint = Camera.main.ScreenPointToRay(mousePos);
@@ -40,7 +61,7 @@ public class GunBehaviour : MonoBehaviour
         if (Input.GetMouseButtonDown(1))
         {
             altFire();
-            Debug.Log("rmb pressed");
+            //Debug.Log("rmb pressed");
             rightClicked = true;
         }
 
@@ -59,6 +80,8 @@ public class GunBehaviour : MonoBehaviour
         else if (Input.GetKey(KeyCode.DownArrow))
             lowerPlatform();
 
+        
+        //Debug.Log(currentProgress * 100 + "%");
     }
 
 
@@ -111,7 +134,7 @@ public class GunBehaviour : MonoBehaviour
             }
 
         }
-        Debug.Log("Left Mouse  pressed 0");
+        //Debug.Log("Left Mouse  pressed 0");
         Clicked = true;
         return;
     }
@@ -126,7 +149,7 @@ public class GunBehaviour : MonoBehaviour
         //checks they exist
         if (rend == null || meshCol == null)
         {
-            Debug.Log("retrningin");
+            ////Debug.Log("retrningin");
             return;
         }
 
@@ -134,7 +157,11 @@ public class GunBehaviour : MonoBehaviour
 
         Texture2D tex = rend.material.mainTexture as Texture2D;
         Vector2 pixelUV = hit.textureCoord;
-        //Debug.Log(tex);
+        
+       
+        
+        ////Debug.Log(tex);
+        //Debug.Log(tex.width * tex.height);
         pixelUV.x *= tex.width;
         //Debug.Log(pixelUV.x);
         pixelUV.y *= tex.height;
@@ -155,8 +182,21 @@ public class GunBehaviour : MonoBehaviour
                 {
                     var lerpx = (int)Mathf.Lerp(lastTouchPos.x, x, f);
                     var lerpy = (int)Mathf.Lerp(lastTouchPos.y, y, f);
-
+                    Color[] _replacedColours = tex.GetPixels(lerpx, lerpy, 10, 10);
+                    //Debug.Log(tex.GetPixels(lerpx, lerpy, 10, 10)[0]);
+                    for (int i = 0; i < _replacedColours.Length; i++)
+                    {
+                        if (_replacedColours[i].a > 0.0f)
+                        {
+                            //Debug.Log(_replacedColours[i].a);
+                            
+                            totalPixels--;
+                            //Debug.Log(totalPixels);
+                        }
+                        
+                    }
                     tex.SetPixels(lerpx, lerpy, 10, 10, _colours);
+                    
                 }
                 
                 
@@ -165,6 +205,8 @@ public class GunBehaviour : MonoBehaviour
             }
             //paints
             tex.Apply();
+            //Debug.Log(totalPixels);
+            currentProgress = Mathf.InverseLerp(maxPixels, 0, totalPixels);
         }
         lastTouchPos = new Vector2(x, y);
         touchedLastFrame = true;
