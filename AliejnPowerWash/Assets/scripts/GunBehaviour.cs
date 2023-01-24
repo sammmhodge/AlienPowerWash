@@ -6,11 +6,12 @@ using UnityEngine;
 public class GunBehaviour : MonoBehaviour
 {
     public bool Clicked, rightClicked, leftCloser;
-    public GameObject jet, testBall, jet2;
+    public GameObject jet, testBall, jet2, platform;
     private Color[] _colours;
     private Vector2 lastTouchPos;
     private bool touchedLastFrame;
-    public float totalSoap, currentSoap, reloadAmount; 
+    public float turnSpeed, raiseSpeed, totalSoap, currentSoap, reloadAmount; 
+ 
     // Start is called before the first frame update
     void Start()
     {
@@ -48,7 +49,15 @@ public class GunBehaviour : MonoBehaviour
             jet.SetActive(false);
             jet2.SetActive(false);
         }
-        
+        if (Input.GetKey(KeyCode.RightArrow))
+            turnRight();
+        else if (Input.GetKey(KeyCode.LeftArrow))
+            turnLeft();
+
+        if (Input.GetKey(KeyCode.UpArrow))
+            raisePlatform();
+        else if (Input.GetKey(KeyCode.DownArrow))
+            lowerPlatform();
 
     }
 
@@ -65,6 +74,7 @@ public class GunBehaviour : MonoBehaviour
             //checks for hitting an object with a rigidbody
             if (hit.rigidbody)
             {
+                //Debug.Log(hit.transform.name);
                 //Saves location that was hit in a variable
                 Vector3 hitSpot = hit.point;
 
@@ -124,12 +134,12 @@ public class GunBehaviour : MonoBehaviour
 
         Texture2D tex = rend.material.mainTexture as Texture2D;
         Vector2 pixelUV = hit.textureCoord;
-        Debug.Log(tex);
+        //Debug.Log(tex);
         pixelUV.x *= tex.width;
         //Debug.Log(pixelUV.x);
         pixelUV.y *= tex.height;
         Color _colour = new Vector4(0, 0, 0, 0);
-        _colours = Enumerable.Repeat(Color.clear, 5 * 5).ToArray();
+        _colours = Enumerable.Repeat(Color.clear, 10 *10).ToArray();
         var x = (int)(pixelUV.x - (5 / 2));
         var y = (int)(pixelUV.y - (5 / 2));
         if (touchedLastFrame)
@@ -140,13 +150,13 @@ public class GunBehaviour : MonoBehaviour
                 float distx = lastTouchPos.x - x;
                 //Debug.Log(distx);
                 float disty = lastTouchPos.y - y;
-                Debug.Log(disty);
+                //Debug.Log(disty);
                 if(distx >= -100f && distx <= 100f && disty >= -100f && disty <= 100f)
                 {
                     var lerpx = (int)Mathf.Lerp(lastTouchPos.x, x, f);
                     var lerpy = (int)Mathf.Lerp(lastTouchPos.y, y, f);
 
-                    tex.SetPixels(lerpx, lerpy, 5, 5, _colours);
+                    tex.SetPixels(lerpx, lerpy, 10, 10, _colours);
                 }
                 
                 
@@ -168,6 +178,26 @@ public class GunBehaviour : MonoBehaviour
         {
             currentSoap += reloadAmount;
         }
+    }
+
+    private void turnRight()
+    {
+        platform.transform.Rotate(0, turnSpeed, 0);
+    }
+    
+    private void turnLeft()
+    {
+        platform.transform.Rotate(0, turnSpeed * -1, 0);
+    }
+
+    private void raisePlatform()
+    {
+        platform.transform.position = new Vector3(platform.transform.position.x, platform.transform.position.y + raiseSpeed, platform.transform.position.z);
+    }
+
+    private void lowerPlatform()
+    {
+        platform.transform.position = new Vector3(platform.transform.position.x, platform.transform.position.y - raiseSpeed, platform.transform.position.z);
     }
 }
 
