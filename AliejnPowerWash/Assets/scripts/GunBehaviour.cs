@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GunBehaviour : MonoBehaviour
 {
@@ -13,6 +15,7 @@ public class GunBehaviour : MonoBehaviour
     private bool touchedLastFrame;
     public float turnSpeed, raiseSpeed, totalSoap, currentSoap, reloadAmount;
     float totalPixels = (1024 * 1024), maxPixels, currentProgress;
+    public TMP_Text percentageText;
 
     // Start is called before the first frame update
     void Start()
@@ -43,7 +46,7 @@ public class GunBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        gameObject.transform.LookAt(monster.transform);
         //variable declaration
         Vector3 mousePos = Input.mousePosition;
         Ray castPoint = Camera.main.ScreenPointToRay(mousePos);
@@ -100,7 +103,7 @@ public class GunBehaviour : MonoBehaviour
                 //Debug.Log(hit.transform.name);
                 //Saves location that was hit in a variable
                 Vector3 hitSpot = hit.point;
-
+                Debug.Log(Input.mousePosition);
                 //if at or halfway across the screen it will use the right jet otherwise it uses the left one
                 if (Input.mousePosition.x >= 960)
                 {
@@ -207,6 +210,9 @@ public class GunBehaviour : MonoBehaviour
             tex.Apply();
             //Debug.Log(totalPixels);
             currentProgress = Mathf.InverseLerp(maxPixels, 0, totalPixels);
+            int percentageProgress = (int)(currentProgress * 100);
+            //Debug.Log(percentageProgress);
+            percentageText.text = percentageProgress + "%";
         }
         lastTouchPos = new Vector2(x, y);
         touchedLastFrame = true;
