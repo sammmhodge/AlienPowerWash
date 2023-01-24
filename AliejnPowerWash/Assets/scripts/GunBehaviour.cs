@@ -10,6 +10,7 @@ public class GunBehaviour : MonoBehaviour
     private Color[] _colours;
     private Vector2 lastTouchPos;
     private bool touchedLastFrame;
+    public float totalSoap, currentSoap, reloadAmount; 
     // Start is called before the first frame update
     void Start()
     {
@@ -31,56 +32,14 @@ public class GunBehaviour : MonoBehaviour
         //checks if lmb down
         if (Input.GetMouseButton(0))
         {
-            //fires raycast
-            if (Physics.Raycast(castPoint, out hit, Mathf.Infinity))
-            {
-                //checks for hitting an object with a rigidbody
-                if (hit.rigidbody)
-                {
-                    //Saves location that was hit in a variable
-                    Vector3 hitSpot = hit.point;
-
-                    //if at or halfway across the screen it will use the right jet otherwise it uses the left one
-                    if (Input.mousePosition.x >= 960)
-                    {
-                        //Tells the cone to look at where was hit. This then rotates 180 to get it to face the right way
-                        jet.transform.LookAt(hitSpot);
-                        jet.transform.rotation *= Quaternion.Euler(0, 180, 0);
-
-                        //selects the correct jet
-                        jet.SetActive(true);
-                        jet2.SetActive(false);
-                        
-                        //calculates the distance between the 2 points, this is then used to apply as a scale for the size of the jet to hit the target and maintain a good and consistent size
-                        Vector3 distanceRight = hit.point - jet.transform.position;
-                        jet.transform.localScale = new Vector3(distanceRight.z / 2, distanceRight.z / 2, distanceRight.z);
-
-                    }
-                    else
-                    {
-                        jet2.transform.LookAt(hitSpot);
-                        jet2.transform.rotation *= Quaternion.Euler(0, 180, 0);
-
-                        jet2.SetActive(true);
-                        jet.SetActive(false);
-                        Vector3 distanceLeft = hit.point - jet2.transform.position;
-                        jet2.transform.localScale = new Vector3(distanceLeft.z / 2, distanceLeft.z / 2, distanceLeft.z);
-
-                    }
-
-                    Draw(hit);
-                
-                }
-         
-            }
-            Debug.Log("Left Mouse  pressed 0");
-            Clicked = true;
+            Fire();
         }
         else touchedLastFrame = false;
 
-        if (Input.GetMouseButton(1))
+        if (Input.GetMouseButtonDown(1))
         {
-            Debug.Log("Right Mouse Pressed 1");
+            altFire();
+            Debug.Log("rmb pressed");
             rightClicked = true;
         }
 
@@ -95,7 +54,57 @@ public class GunBehaviour : MonoBehaviour
 
 
 
+    private void Fire()
+    {
+        Vector3 mousePos = Input.mousePosition;
+        Ray castPoint = Camera.main.ScreenPointToRay(mousePos);
+        RaycastHit hit;
+        //fires raycast
+        if (Physics.Raycast(castPoint, out hit, Mathf.Infinity))
+        {
+            //checks for hitting an object with a rigidbody
+            if (hit.rigidbody)
+            {
+                //Saves location that was hit in a variable
+                Vector3 hitSpot = hit.point;
 
+                //if at or halfway across the screen it will use the right jet otherwise it uses the left one
+                if (Input.mousePosition.x >= 960)
+                {
+                    //Tells the cone to look at where was hit. This then rotates 180 to get it to face the right way
+                    jet.transform.LookAt(hitSpot);
+                    jet.transform.rotation *= Quaternion.Euler(0, 180, 0);
+
+                    //selects the correct jet
+                    jet.SetActive(true);
+                    jet2.SetActive(false);
+
+                    //calculates the distance between the 2 points, this is then used to apply as a scale for the size of the jet to hit the target and maintain a good and consistent size
+                    Vector3 distanceRight = hit.point - jet.transform.position;
+                    jet.transform.localScale = new Vector3(distanceRight.z / 2, distanceRight.z / 2, distanceRight.z);
+
+                }
+                else
+                {
+                    jet2.transform.LookAt(hitSpot);
+                    jet2.transform.rotation *= Quaternion.Euler(0, 180, 0);
+
+                    jet2.SetActive(true);
+                    jet.SetActive(false);
+                    Vector3 distanceLeft = hit.point - jet2.transform.position;
+                    jet2.transform.localScale = new Vector3(distanceLeft.z / 2, distanceLeft.z / 2, distanceLeft.z);
+
+                }
+
+                Draw(hit);
+
+            }
+
+        }
+        Debug.Log("Left Mouse  pressed 0");
+        Clicked = true;
+        return;
+    }
 
 
 
@@ -150,6 +159,15 @@ public class GunBehaviour : MonoBehaviour
         lastTouchPos = new Vector2(x, y);
         touchedLastFrame = true;
         return;
+    }
+
+
+    private void altFire()
+    {
+        if(currentSoap < totalSoap)
+        {
+            currentSoap += reloadAmount;
+        }
     }
 }
 
