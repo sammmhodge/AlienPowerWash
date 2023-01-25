@@ -12,7 +12,12 @@ ModelImporter:
   - first:
       74: -1422011007694221501
     second: Armature|ArmatureAction.001
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Skin_ZSphere_3
+    second: {fileID: 2100000, guid: cdd4526ee88324c48b6aac224acef02a, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -128,7 +133,7 @@ ModelImporter:
       maskType: 3
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
-    isReadable: 0
+    isReadable: 1
   meshes:
     lODScreenPercentages: []
     globalScale: 1

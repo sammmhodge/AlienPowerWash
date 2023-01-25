@@ -9,7 +9,7 @@ using UnityEngine.UI;
 public class GunBehaviour : MonoBehaviour
 {
     public bool Clicked, rightClicked, leftCloser;
-    public GameObject jet, testBall, jet2, platform, monster;
+    public GameObject jet, testBall, jet2, platform, monster, focalPoint;
     private Color[] _colours;
     private Vector2 lastTouchPos;
     private bool touchedLastFrame;
@@ -49,14 +49,11 @@ public class GunBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        gameObject.transform.LookAt(monster.transform);
+        gameObject.transform.LookAt(focalPoint.transform);
         //variable declaration
         Vector3 mousePos = Input.mousePosition;
-        Ray castPoint = Camera.main.ScreenPointToRay(mousePos);
-        RaycastHit hit;
         Clicked = false;
         rightClicked = false;
-
         //checks if lmb down
         if (Input.GetMouseButton(0))
         {
