@@ -236,12 +236,12 @@ public class GunBehaviour : MonoBehaviour
 
     private void turnRight()
     {
-        platform.transform.Rotate(0, turnSpeed, 0);
+        platform.transform.Rotate(0, 0,turnSpeed);
     }
     
     private void turnLeft()
     {
-        platform.transform.Rotate(0, turnSpeed * -1, 0);
+        platform.transform.Rotate(0, 0, turnSpeed * -1);
     }
 
     private void raisePlatform()
