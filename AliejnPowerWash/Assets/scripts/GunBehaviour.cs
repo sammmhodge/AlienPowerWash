@@ -13,13 +13,16 @@ public class GunBehaviour : MonoBehaviour
     private Color[] _colours;
     private Vector2 lastTouchPos;
     private bool touchedLastFrame;
-    public float turnSpeed, raiseSpeed, totalSoap, currentSoap, reloadAmount;
+    public float turnSpeed, raiseSpeed, totalSoap, currentSoap, reloadAmount, soapUsed, rageReduced;
     float totalPixels = (1024 * 1024), maxPixels, currentProgress;
     public TMP_Text percentageText;
+    public Image soapBar, lived;
+    private float soapPercentage;
 
     // Start is called before the first frame update
     void Start()
     {
+        lived.color = new Vector4(0, 0, 0, 0);
         Texture2D _tex = monster.GetComponent<Renderer>().material.mainTexture as Texture2D;
         //for(int x = 0; x < _tex.width; x++)
         //{
@@ -83,7 +86,9 @@ public class GunBehaviour : MonoBehaviour
         else if (Input.GetKey(KeyCode.DownArrow))
             lowerPlatform();
 
-        
+        soapPercentage = currentSoap / totalSoap;
+        soapBar.rectTransform.sizeDelta = new Vector2(1000 * soapPercentage, 100);
+
         //Debug.Log(currentProgress * 100 + "%");
     }
 
@@ -103,13 +108,13 @@ public class GunBehaviour : MonoBehaviour
                 //Debug.Log(hit.transform.name);
                 //Saves location that was hit in a variable
                 Vector3 hitSpot = hit.point;
-                Debug.Log(Input.mousePosition);
+                //Debug.Log(Input.mousePosition);
                 //if at or halfway across the screen it will use the right jet otherwise it uses the left one
                 if (Input.mousePosition.x >= 960)
                 {
                     //Tells the cone to look at where was hit. This then rotates 180 to get it to face the right way
                     jet.transform.LookAt(hitSpot);
-                    jet.transform.rotation *= Quaternion.Euler(0, 180, 0);
+                    jet.transform.rotation *= Quaternion.Euler(0, 180, 180);
 
                     //selects the correct jet
                     jet.SetActive(true);
@@ -131,9 +136,16 @@ public class GunBehaviour : MonoBehaviour
                     jet2.transform.localScale = new Vector3(distanceLeft.z / 2, distanceLeft.z / 2, distanceLeft.z);
 
                 }
-
-                Draw(hit);
-
+                currentSoap -= soapUsed;
+                if (currentSoap > 0)
+                {
+                    Draw(hit);
+                }
+                else if (currentSoap <= 0)
+                {
+                    monster.GetComponent<AlienBehaviour>().rageRemaining -= rageReduced;
+                    Debug.Log(monster.GetComponent<AlienBehaviour>().rageRemaining);
+                }
             }
 
         }
@@ -213,6 +225,10 @@ public class GunBehaviour : MonoBehaviour
             int percentageProgress = (int)(currentProgress * 100);
             //Debug.Log(percentageProgress);
             percentageText.text = percentageProgress + "%";
+            if(percentageProgress >= 75)
+            {
+                lived.color = new Vector4(1, 1, 1, 1);
+            }
         }
         lastTouchPos = new Vector2(x, y);
         touchedLastFrame = true;
@@ -225,6 +241,7 @@ public class GunBehaviour : MonoBehaviour
         if(currentSoap < totalSoap)
         {
             currentSoap += reloadAmount;
+            if (currentSoap > totalSoap) currentSoap = totalSoap;
         }
     }
 
