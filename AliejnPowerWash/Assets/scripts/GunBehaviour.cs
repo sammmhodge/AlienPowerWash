@@ -110,32 +110,21 @@ public class GunBehaviour : MonoBehaviour
                 Vector3 hitSpot = hit.point;
                 //Debug.Log(Input.mousePosition);
                 //if at or halfway across the screen it will use the right jet otherwise it uses the left one
-                if (Input.mousePosition.x >= 960)
-                {
+               
                     //Tells the cone to look at where was hit. This then rotates 180 to get it to face the right way
                     jet.transform.LookAt(hitSpot);
                     jet.transform.rotation *= Quaternion.Euler(0, 180, 180);
 
                     //selects the correct jet
                     jet.SetActive(true);
-                    jet2.SetActive(false);
+                    //jet2.SetActive(false);
 
                     //calculates the distance between the 2 points, this is then used to apply as a scale for the size of the jet to hit the target and maintain a good and consistent size
                     Vector3 distanceRight = hit.point - jet.transform.position;
                     jet.transform.localScale = new Vector3(distanceRight.z / 2, distanceRight.z / 2, distanceRight.z);
 
-                }
-                else
-                {
-                    jet2.transform.LookAt(hitSpot);
-                    jet2.transform.rotation *= Quaternion.Euler(0, 180, 0);
 
-                    jet2.SetActive(true);
-                    jet.SetActive(false);
-                    Vector3 distanceLeft = hit.point - jet2.transform.position;
-                    jet2.transform.localScale = new Vector3(distanceLeft.z / 2, distanceLeft.z / 2, distanceLeft.z);
 
-                }
                 currentSoap -= soapUsed;
                 if (currentSoap > 0)
                 {
