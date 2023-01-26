@@ -6713,6 +6713,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1374966763 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5244251897755696161, guid: a65a3fca477eca448b21fd8af4016d1e, type: 3}
+  m_PrefabInstance: {fileID: 976994831}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1386194740
 GameObject:
   m_ObjectHideFlags: 0
@@ -7312,7 +7317,7 @@ MonoBehaviour:
   m_SpriteState:
     m_HighlightedSprite: {fileID: 21300000, guid: 069e39632d7743344a7841d5e20ec324, type: 3}
     m_PressedSprite: {fileID: 21300000, guid: 874814f1de4eebc4ebcaa5fcd104274f, type: 3}
-    m_SelectedSprite: {fileID: 21300000, guid: 874814f1de4eebc4ebcaa5fcd104274f, type: 3}
+    m_SelectedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
@@ -7327,7 +7332,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1775552700}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: play
+        m_MethodName: Credits
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7409,7 +7414,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   panel: {fileID: 1476774196}
   levelSelectPanel: {fileID: 1241625254}
-  mainCam: {fileID: 0}
+  mainCam: {fileID: 1374966763}
   startPos: {x: 0, y: 0, z: 0}
   startRot: {x: 0, y: 0, z: 0, w: 0}
 --- !u!114 &1775552701
