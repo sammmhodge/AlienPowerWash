@@ -77,13 +77,13 @@ public class AlienBehaviour : MonoBehaviour
 
         //}
 
-        if (rageRemaining > 66) angerState.sprite = alienRageStage[0];
-        else if (rageRemaining <= 66 && rageRemaining > 33)
+        if (rageRemaining > 75) angerState.sprite = alienRageStage[0];
+        else if (rageRemaining <= 75 && rageRemaining > 50)
         {
             angerState.sprite = alienRageStage[1];
             if (orDont != null) orDont.color = new Vector4(1,1,1,1);
         }
-        else if (rageRemaining <= 33 && rageRemaining > 0) angerState.sprite = alienRageStage[2];
+        else if (rageRemaining <= 50 && rageRemaining > 25) angerState.sprite = alienRageStage[2];
         else angerState.sprite = alienRageStage[3];
 
     }

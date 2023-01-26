@@ -1687,6 +1687,7 @@ MonoBehaviour:
   rageLossPerSecond: 0
   dead: {fileID: 574640011}
   angerState: {fileID: 0}
+  orDont: {fileID: 0}
   anim: {fileID: 0}
   alienRageStage: []
 --- !u!1001 &1272746865
@@ -2234,9 +2235,10 @@ MonoBehaviour:
   alien: 0
   rageTotal: 100
   rageRemaining: 0
-  rageLossPerSecond: 0.01
+  rageLossPerSecond: 0.05
   dead: {fileID: 574640011}
   angerState: {fileID: 1968072450}
+  orDont: {fileID: 0}
   anim: {fileID: 485931060}
   alienRageStage:
   - {fileID: 21300000, guid: 9ed93696f3332114e80b74889b4c3572, type: 3}
@@ -2428,6 +2430,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 934127622, guid: c2eb5ad87bdc51740afbbd1705ddc1d0, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3921137298340408094, guid: c2eb5ad87bdc51740afbbd1705ddc1d0, type: 3}
       propertyPath: m_Color.a
       value: 0

@@ -127,6 +127,10 @@ public class GunBehaviour : MonoBehaviour
 
 
                 currentSoap -= soapUsed;
+                if(currentSoap <= 0)
+                {
+                    currentSoap = 0;
+                }
                 if (currentSoap > 0)
                 {
                     Draw(hit);
