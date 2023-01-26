@@ -5,15 +5,20 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    public GameObject panel;
-    public void play()
+    public GameObject panel, levelSelectPanel;
+    public void play(int level)
     {
-        //SceneManager.LoadScene(1);
-        panel.SetActive(false);
+        SceneManager.LoadScene(level);
     }
 
     public void quit()
     {
         Application.Quit();
+    }
+
+    public void LevelSelect()
+    {
+        panel.SetActive(false);
+        levelSelectPanel.SetActive(true);
     }
 }

@@ -2234,7 +2234,7 @@ MonoBehaviour:
   alien: 0
   rageTotal: 100
   rageRemaining: 0
-  rageLossPerSecond: 5
+  rageLossPerSecond: 0.01
   dead: {fileID: 574640011}
   angerState: {fileID: 1968072450}
   anim: {fileID: 485931060}
@@ -2689,5 +2689,9 @@ PrefabInstance:
       propertyPath: percentageText
       value: 
       objectReference: {fileID: 2117967198}
+    - target: {fileID: 5244251897755696174, guid: a65a3fca477eca448b21fd8af4016d1e, type: 3}
+      propertyPath: amountToComplete
+      value: 75
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a65a3fca477eca448b21fd8af4016d1e, type: 3}
