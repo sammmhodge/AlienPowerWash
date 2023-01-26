@@ -16,12 +16,14 @@ public class AlienBehaviour : MonoBehaviour
     }
     public alienChoice alien;
     
+
+
     public float rageTotal, rageRemaining, rageLossPerSecond;
-    public Image rageBar, dead;
+    public Image dead, angerState;
     public Animator anim;
     bool isActive;
     private float timePassed, timeGoal= 1.0f;
-
+    public Sprite[] alienRageStage;
     // Start is called before the first frame update
     void Start()
     {
@@ -69,12 +71,17 @@ public class AlienBehaviour : MonoBehaviour
         }
         else timePassed += Time.deltaTime;
 
-        if(rageRemaining <= 0)
-        {
-            dead.color = new Vector4(1, 1, 1, 1);
+        //if(rageRemaining <= 0)
+        //{
+        //    dead.color = new Vector4(1, 1, 1, 1);
             
-        }
-        rageBar.rectTransform.sizeDelta = new Vector2(1000 * (rageRemaining / rageTotal), 100);
+        //}
+
+        if (rageRemaining > 66) angerState.sprite = alienRageStage[0];
+        else if (rageRemaining <= 66 && rageRemaining > 33) angerState.sprite = alienRageStage[1];
+        else if (rageRemaining <= 50 && rageRemaining > 0) angerState.sprite = alienRageStage[2];
+        else angerState.sprite = alienRageStage[3];
+
     }
 
     private IEnumerator timerLizard()

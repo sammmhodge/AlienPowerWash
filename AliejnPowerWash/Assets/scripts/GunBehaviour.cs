@@ -8,8 +8,8 @@ using UnityEngine.UI;
 
 public class GunBehaviour : MonoBehaviour
 {
-    public bool Clicked, rightClicked, leftCloser;
-    public GameObject jet, testBall, jet2, platform, monster, focalPoint;
+    private bool Clicked, rightClicked, leftCloser;
+    public GameObject jet, testBall, jet2, platform, monster, focalPoint, pumpMe;
     private Color[] _colours;
     private Vector2 lastTouchPos;
     private bool touchedLastFrame;
@@ -17,7 +17,9 @@ public class GunBehaviour : MonoBehaviour
     float totalPixels = (1024 * 1024), maxPixels, currentProgress;
     public TMP_Text percentageText;
     public Image soapBar, lived;
+    public int amountToComplete;
     private float soapPercentage;
+ 
 
     // Start is called before the first frame update
     void Start()
@@ -84,7 +86,9 @@ public class GunBehaviour : MonoBehaviour
             lowerPlatform();
 
         soapPercentage = currentSoap / totalSoap;
-        soapBar.rectTransform.sizeDelta = new Vector2(1000 * soapPercentage, 100);
+        soapBar.rectTransform.sizeDelta = new Vector2(1000 * soapPercentage, 60);
+        if (soapPercentage < 0.25) pumpMe.SetActive(true);
+        else pumpMe.SetActive(false);
 
         //Debug.Log(currentProgress * 100 + "%");
     }
@@ -211,7 +215,7 @@ public class GunBehaviour : MonoBehaviour
             int percentageProgress = (int)(currentProgress * 100);
             //Debug.Log(percentageProgress);
             percentageText.text = percentageProgress + "%";
-            if(percentageProgress >= 75)
+            if(percentageProgress >= amountToComplete)
             {
                 lived.color = new Vector4(1, 1, 1, 1);
             }
