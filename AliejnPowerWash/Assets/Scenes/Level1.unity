@@ -1406,6 +1406,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1522955133 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5244251897755696174, guid: a65a3fca477eca448b21fd8af4016d1e, type: 3}
+  m_PrefabInstance: {fileID: 5244251896518217558}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 853163159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8ef52025f1b15e48969e02cb8bd69ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1564050781
 GameObject:
   m_ObjectHideFlags: 0
@@ -1845,6 +1856,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1159518138873239701, guid: c2eb5ad87bdc51740afbbd1705ddc1d0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1354917095174558528, guid: c2eb5ad87bdc51740afbbd1705ddc1d0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1522955133}
+    - target: {fileID: 3921137298340408094, guid: c2eb5ad87bdc51740afbbd1705ddc1d0, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: d82e013ae36fa0d429134f28a9687e42, type: 3}
     - target: {fileID: 3921137299358359313, guid: c2eb5ad87bdc51740afbbd1705ddc1d0, type: 3}
       propertyPath: m_Name
       value: UICanvas
@@ -1939,6 +1962,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c2eb5ad87bdc51740afbbd1705ddc1d0, type: 3}
+--- !u!1 &3921137298847900822 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1159518138873239701, guid: c2eb5ad87bdc51740afbbd1705ddc1d0, type: 3}
+  m_PrefabInstance: {fileID: 3921137298847900821}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5244251896518217558
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2034,6 +2062,10 @@ PrefabInstance:
       propertyPath: focalPoint
       value: 
       objectReference: {fileID: 754527477}
+    - target: {fileID: 5244251897755696174, guid: a65a3fca477eca448b21fd8af4016d1e, type: 3}
+      propertyPath: completeButton
+      value: 
+      objectReference: {fileID: 3921137298847900822}
     - target: {fileID: 5244251897755696174, guid: a65a3fca477eca448b21fd8af4016d1e, type: 3}
       propertyPath: percentageText
       value: 

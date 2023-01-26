@@ -5,11 +5,12 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GunBehaviour : MonoBehaviour
 {
     private bool Clicked, rightClicked, leftCloser;
-    public GameObject jet, testBall, jet2, platform, monster, focalPoint, pumpMe;
+    public GameObject jet, testBall, jet2, platform, monster, focalPoint, pumpMe, completeButton;
     private Color[] _colours;
     private Vector2 lastTouchPos;
     private bool touchedLastFrame;
@@ -228,7 +229,8 @@ public class GunBehaviour : MonoBehaviour
             percentageText.text = percentageProgress + "%";
             if(percentageProgress >= amountToComplete)
             {
-                lived.color = new Vector4(1, 1, 1, 1);
+                completeButton.SetActive(true);
+                //lived.color = new Vector4(1, 1, 1, 1);
             }
         }
         lastTouchPos = new Vector2(x, y);
@@ -265,6 +267,11 @@ public class GunBehaviour : MonoBehaviour
     private void lowerPlatform()
     {
         platform.transform.position = new Vector3(platform.transform.position.x, platform.transform.position.y - raiseSpeed, platform.transform.position.z);
+    }
+
+    public void nextLeveL(int level)
+    {
+        SceneManager.LoadScene(level);
     }
 }
 
