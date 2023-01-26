@@ -19,6 +19,8 @@ public class GunBehaviour : MonoBehaviour
     public Image soapBar, lived;
     public int amountToComplete;
     private float soapPercentage;
+    public AudioSource ass;
+    public AudioClip Jet, Soap;
  
 
     // Start is called before the first frame update
@@ -61,7 +63,11 @@ public class GunBehaviour : MonoBehaviour
         {
             Fire();
         }
-        else touchedLastFrame = false;
+        else
+        {
+            touchedLastFrame = false;
+            ass.Stop();
+        }
 
         if (Input.GetMouseButtonDown(1))
         {
@@ -118,6 +124,7 @@ public class GunBehaviour : MonoBehaviour
 
                     //selects the correct jet
                     jet.SetActive(true);
+                if(!ass.isPlaying) ass.PlayOneShot(Jet);
                     //jet2.SetActive(false);
 
                     //calculates the distance between the 2 points, this is then used to apply as a scale for the size of the jet to hit the target and maintain a good and consistent size
@@ -235,6 +242,7 @@ public class GunBehaviour : MonoBehaviour
         if(currentSoap < totalSoap)
         {
             currentSoap += reloadAmount;
+            ass.PlayOneShot(Soap);
             if (currentSoap > totalSoap) currentSoap = totalSoap;
         }
     }
