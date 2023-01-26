@@ -19,7 +19,7 @@ public class AlienBehaviour : MonoBehaviour
 
 
     public float rageTotal, rageRemaining, rageLossPerSecond;
-    public Image dead, angerState;
+    public Image dead, angerState, orDont;
     public Animator anim;
     bool isActive;
     private float timePassed, timeGoal= 1.0f;
@@ -74,12 +74,16 @@ public class AlienBehaviour : MonoBehaviour
         //if(rageRemaining <= 0)
         //{
         //    dead.color = new Vector4(1, 1, 1, 1);
-            
+
         //}
 
         if (rageRemaining > 66) angerState.sprite = alienRageStage[0];
-        else if (rageRemaining <= 66 && rageRemaining > 33) angerState.sprite = alienRageStage[1];
-        else if (rageRemaining <= 50 && rageRemaining > 0) angerState.sprite = alienRageStage[2];
+        else if (rageRemaining <= 66 && rageRemaining > 33)
+        {
+            angerState.sprite = alienRageStage[1];
+            if (orDont != null) orDont.color = new Vector4(1,1,1,1);
+        }
+        else if (rageRemaining <= 33 && rageRemaining > 0) angerState.sprite = alienRageStage[2];
         else angerState.sprite = alienRageStage[3];
 
     }
