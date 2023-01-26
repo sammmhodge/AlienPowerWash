@@ -494,7 +494,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 4
+          m_IntArgument: 6
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -627,7 +627,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -760,7 +760,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 2
+          m_IntArgument: 4
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -1275,7 +1275,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 3
+          m_IntArgument: 5
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -7012,7 +7012,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -318, y: -136}
+  m_AnchoredPosition: {x: -275, y: -136}
   m_SizeDelta: {x: 777, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1589370470
@@ -7145,7 +7145,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -504, y: -31}
+  m_AnchoredPosition: {x: -461, y: -31}
   m_SizeDelta: {x: 310, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1664387702
@@ -7199,7 +7199,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -7278,7 +7278,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 493, y: -266}
+  m_AnchoredPosition: {x: 464, y: -266}
   m_SizeDelta: {x: 310, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1702575609
@@ -7310,9 +7310,9 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 21300000, guid: 1cc51cbbdc5a4684c8f447c00917fab0, type: 3}
-    m_PressedSprite: {fileID: 21300000, guid: 0a8f34dda4c24fc47a4ae39bd17b0836, type: 3}
-    m_SelectedSprite: {fileID: 21300000, guid: 0a8f34dda4c24fc47a4ae39bd17b0836, type: 3}
+    m_HighlightedSprite: {fileID: 21300000, guid: 069e39632d7743344a7841d5e20ec324, type: 3}
+    m_PressedSprite: {fileID: 21300000, guid: 874814f1de4eebc4ebcaa5fcd104274f, type: 3}
+    m_SelectedSprite: {fileID: 21300000, guid: 874814f1de4eebc4ebcaa5fcd104274f, type: 3}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
@@ -7409,6 +7409,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   panel: {fileID: 1476774196}
   levelSelectPanel: {fileID: 1241625254}
+  mainCam: {fileID: 0}
+  startPos: {x: 0, y: 0, z: 0}
+  startRot: {x: 0, y: 0, z: 0, w: 0}
 --- !u!114 &1775552701
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12960,7 +12963,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -523, y: -239}
+  m_AnchoredPosition: {x: -480, y: -239}
   m_SizeDelta: {x: 252, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1850901783
@@ -13264,7 +13267,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -350, y: 240}
+  m_AnchoredPosition: {x: -305, y: 240}
   m_SizeDelta: {x: 747, y: 219}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2041949531
