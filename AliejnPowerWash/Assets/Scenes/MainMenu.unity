@@ -6397,6 +6397,7 @@ MonoBehaviour:
   rageLossPerSecond: 0.1
   dead: {fileID: 138506132}
   angerState: {fileID: 0}
+  orDont: {fileID: 0}
   anim: {fileID: 1809117752}
   alienRageStage: []
 --- !u!1 &1241625254
